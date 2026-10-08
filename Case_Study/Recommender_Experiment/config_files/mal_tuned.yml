@@ -1,0 +1,107 @@
+experiment:
+  backend: tensorflow
+  dataset: MyAnimeList_experiment
+  data_config:
+    strategy: fixed
+    train_path: ../data/mal/train_validation.tsv
+    test_path: ../data/mal/test.tsv
+  binarize: true
+  top_k: 50
+  evaluation:
+    cutoffs:
+    - 10
+    - 20
+    - 50
+    simple_metrics:
+    - nDCG
+    - Recall
+    - MAP
+    - MRR
+  gpu: 1
+  path_output_rec_result: ./results/mal_final/recommendations
+  path_output_rec_performance: ./results/mal_final/performance
+  path_output_rec_weight: ./results/mal_final/weights
+  path_log_folder: ../results/mal_final
+  external_models_path: ../external/models/__init__.py
+  models:
+    Random:
+      meta:
+        seed: 42
+        save_recs: true
+        save_weights: false
+    external.MostPop:
+      meta:
+        verbose: false
+        save_recs: true
+        save_weights: false
+    UserKNN:
+      meta:
+        seed: 42
+        save_recs: true
+        verbose: false
+        save_weights: false
+      neighbors: 614.1747158820654
+      similarity: cosine
+    ItemKNN:
+      meta:
+        seed: 42
+        save_recs: true
+        verbose: false
+        save_weights: false
+      neighbors: 124.62735294618454
+      similarity: cosine
+      implementation: aiolli
+    RP3beta:
+      meta:
+        seed: 42
+        verbose: false
+        save_recs: true
+        save_weights: false
+      neighborhood: 246.0
+      alpha: 1.0117440342997073
+      beta: 0.5961927069775117
+      normalize_similarity: true
+    MF2020:
+      meta:
+        seed: 42
+        hyper_max_evals: 20
+        hyper_opt_alg: tpe
+        verbose: false
+        save_recs: true
+        save_weights: false
+        validation_rate: 60
+      epochs: 60
+      factors: 16
+      lr: 0.015443490499450537
+      reg: 0.02236420282061843
+      m: 4
+    EASER:
+      meta:
+        seed: 42
+        verbose: false
+        save_recs: true
+        save_weights: false
+      l2_norm: 97.97026620421359
+    Slim:
+      meta:
+        seed: 42
+        verbose: false
+        save_recs: true
+        save_weights: false
+      l1_ratio: 0.0001087003823464637
+      alpha: 0.06532795053066662
+      neighborhood: 546.0
+    MultiVAE:
+      meta:
+        seed: 42
+        save_recs: true
+        verbose: false
+        save_weights: false
+        validation_rate: 15
+      lr: 0.00034378808389221727
+      epochs: 15
+      batch_size: 128
+      intermediate_dim: 523.0
+      latent_dim: 388.0
+      dropout_pkeep: 0.5
+      reg_lambda: 0.25550069638053235

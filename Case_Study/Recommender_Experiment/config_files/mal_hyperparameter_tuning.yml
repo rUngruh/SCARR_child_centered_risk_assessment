@@ -1,0 +1,126 @@
+experiment:
+  backend: tensorflow
+  dataset: MyAnimeList_tuning
+  data_config:
+    strategy: fixed
+    train_path: ../data/mal/train.tsv
+    test_path: ../data/mal/test.tsv
+    validation_path: ../data/mal/validation.tsv
+  binarize: True
+  top_k: 10
+  evaluation:
+    cutoffs: [10]
+    simple_metrics: [nDCG, Recall, MAP, MRR]
+  gpu: 1
+  path_output_rec_result: ./results/mal/recommendations
+  path_output_rec_performance: ./results/mal/performance
+  path_output_rec_weight: ./results/mal/weights
+  path_log_folder: ../results/mal
+  external_models_path: ../external/models/__init__.py
+  models:
+    Random:
+      meta:
+        seed: 42
+        save_recs: False
+        save_weights: False
+    external.MostPop:
+      meta:
+        verbose: False
+        save_recs: False
+        save_weights: False
+    UserKNN: 
+      meta:
+        seed: 42
+        hyper_max_evals: 20
+        hyper_opt_alg: tpe
+        save_recs: False
+        verbose: False
+        save_weights: False
+        validation_metric: nDCG@10
+      neighbors: [ uniform, 5, 1000 ]
+      similarity: [cosine, jaccard]
+    ItemKNN: 
+      meta:
+        seed: 42
+        save_recs: False
+        verbose: False
+        save_weights: False
+        hyper_max_evals: 20
+        hyper_opt_alg: tpe
+        validation_metric: nDCG@10
+      neighbors: [uniform, 5, 1000]
+      similarity: [cosine, jaccard]
+      implementation: aiolli
+    RP3beta: 
+      meta:
+        seed: 42
+        hyper_max_evals: 20
+        hyper_opt_alg: tpe
+        verbose: False
+        save_recs: False
+        save_weights: False
+        validation_metric: nDCG@10
+      neighborhood: [quniform, 5, 1000, 1]
+      alpha: [uniform, 0, 2]
+      beta: [uniform, 0, 2]
+      normalize_similarity: [True, False]
+    MF2020: 
+      meta:
+        seed: 42
+        hyper_max_evals: 20
+        hyper_opt_alg: tpe
+        verbose: False
+        save_recs: False
+        save_weights: False
+        validation_rate: 5
+        validation_metric: nDCG@10
+      early_stopping:
+        patience: 5
+        verbose: True
+        min_improvement: 0.005
+      epochs: 250
+      factors: [8, 16, 32, 64, 128, 256]
+      lr: [loguniform, -11.512925464970229, 0]
+      reg: [loguniform, -11.512925464970229, -2.30258509299]
+      m: [4,6,8]
+    EASER: 
+      meta:
+        seed: 42
+        verbose: False
+        save_recs: False
+        save_weights: False
+        hyper_max_evals: 20
+        hyper_opt_alg: tpe
+        validation_metric: nDCG@10
+      l2_norm: [loguniform, 2.72, 16]
+    Slim:
+      meta:
+        hyper_max_evals: 20
+        hyper_opt_alg: tpe
+        verbose: False
+        save_recs: False
+        save_weights: False
+        validation_metric: nDCG@10
+      l1_ratio: [loguniform, -11.512925464970229, 0]
+      alpha: [uniform, 10e-3, 1]
+      neighborhood: [quniform, 5, 1000, 1]
+    MultiVAE: 
+      meta:
+        hyper_max_evals: 20
+        hyper_opt_alg: tpe
+        save_recs: False
+        verbose: False
+        save_weights: False
+        validation_rate: 5
+        validation_metric: nDCG@10
+      early_stopping:
+          patience: 5
+          verbose: True
+          min_improvement: 0.005
+      lr: [loguniform, -11.512925464970229, 0]
+      epochs: 250
+      batch_size: [64, 128, 256]         
+      intermediate_dim: [quniform, 400, 800, 1]
+      latent_dim: [quniform, 100, 400, 1]
+      dropout_pkeep: 0.5
+      reg_lambda: [loguniform, -11.512925464970229, 0] 

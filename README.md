@@ -1,2 +1,16 @@
-# SCARR_child_centered_risk_assessment
+# The Devil is in the Details: Rethinking Risk Assessment for Children in Recommender Systems through Susceptibility
+This repository contains the code to reproduce the experiments from the paper: **The Devil is in the Details: Rethinking Risk Assessment for Children in Recommender Systems through Susceptibility**
 
+# Abstract
+Policymakers and researchers have turned to \textit{risk assessments} to understand how recommender systems negatively affect children’s online experiences. However, existing guidelines and early assessment approaches (i) often consider risks only if they lead to large-scale systemic consequences and (ii) assess risks in a vacuum, without considering how risks emerge in tandem and potentially amplify each other's effects, rendering risk assessments insufficient for children, who are a heterogeneous, underrepresented, and vulnerable group.
+
+To address the resulting demand for more nuanced approaches to capture and explain where risk emerges for children, we conceptualize and formalize **susceptibility**. This concept captures and pinpoints dynamics and system behaviors that lead to high risk for users, given their traits (i.e., personal characteristics and behaviors). When susceptibilities intersect with users' vulnerabilities, negative consequences for users can surface.  Our definition of susceptibility is positioned at the core of interactions between recommenders, user traits, and risk. We then introduce the **risk assessment framework** 'Susceptibility-based Child-aware Assessment of Risks in Recommenders (*SCARR*)', which provides guidance for assessments and addresses persistent practical challenges by centering on susceptibility. This framework is designed to conduct transparent audits of recommendations made to children, providing nuanced and individualized empirical evidence about risks. SCARR can simultaneously capture a wide range of risks and provides a shared methodology for discovering risks that may be otherwise obscured: instead of merely estimating how widespread a risk is, SCARR reveals which children are likely to be exposed to which risks, pointing to critical dynamics that may require intervention. To demonstrate applicability and provide practical exemplary guidelines for deployment, we conduct a case study where we operationalize the proposed risk assessment framework. By auditing a state-of-the-art recommendation algorithm in the anime domain, we discuss practical considerations for applying the framework and provide empirical insights about children's susceptibilities.
+
+We advance the study of risks in children’s recommender systems by moving beyond aggregate, system-level perspectives and foregrounding individual-level exposure dynamics. By creating a formal foundation and providing guidance for practical usage, we enable more nuanced, empirically grounded risk assessments. This perspective enables policymakers, product teams, and other stakeholders to identify and address not only widespread harms but also risks that disproportionately affect vulnerable groups, leading to more targeted and inclusive safeguards.
+
+# Citation
+
+
+
+# Case Study
+The directory `Case_Study` includes the code to reproduce the case study in Section 6 of our manuscript.
