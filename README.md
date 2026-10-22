@@ -1,5 +1,5 @@
 # The Devil is in the Details: Rethinking Risk Assessment for Children in Recommender Systems through Susceptibility
-This repository contains the code to reproduce the experiments from the paper: **The Devil is in the Details: Rethinking Risk Assessment for Children in Recommender Systems through Susceptibility**
+This repository contains the code to reproduce the experiments from the paper: **The Devil is in the Details: Rethinking Risk Assessment for Children in Recommender Systems through Susceptibility**.
 
 # Abstract
 Policymakers and researchers have turned to \textit{risk assessments} to understand how recommender systems negatively affect children’s online experiences. However, existing guidelines and early assessment approaches (i) often consider risks only if they lead to large-scale systemic consequences and (ii) assess risks in a vacuum, without considering how risks emerge in tandem and potentially amplify each other's effects, rendering risk assessments insufficient for children, who are a heterogeneous, underrepresented, and vulnerable group.
